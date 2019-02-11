@@ -10,7 +10,14 @@ public class LoopFun
        * @return the factorial of the number
        */
       public Integer factorial(Integer number){
-          return null;
+          Integer result = new Integer("1");
+        
+          int n = number;
+          for (int i = 2 ; i <= n ; i++ )
+        
+            result = result * (Integer.valueOf(i));
+
+          return result;
       }
 
       /**
@@ -21,8 +28,26 @@ public class LoopFun
        * @return Upper case string of the first letter of each word
        */
       public String acronym(String phrase) {
-          return null;
+      StringBuilder sb = new StringBuilder();
+      char currentChar = phrase.charAt(0);
+      sb.append(currentChar);
+      for (int i = 1; i < phrase.length(); i++) {
+            char nextChar = phrase.charAt(i);
+            if (isNextChar(currentChar, nextChar)) {
+           sb.append(nextChar);
+        }
+        currentChar = nextChar;
       }
+      return sb.toString().toUpperCase();
+          
+          
+        }
+        private static boolean isNextChar(final char currentChar, final char nextChar) {
+            return (!Character.isAlphabetic(currentChar) && 
+            Character.isAlphabetic(nextChar)) ||
+            (Character.isLowerCase(currentChar) && 
+            Character.isUpperCase(nextChar));
+        }
 
       /**
        * To prevent anyone from reading our messages, we can encrypt it so it will only be readable by its
@@ -37,6 +62,21 @@ public class LoopFun
        * @return the encrypted string by shifting each character by three character
        */
       public String encrypt(String word) {
-          return null;
+              int shift = 3;
+              String s = "";
+              int len = word.length();
+              
+              for(int x = 0; x < len; x++){
+              char c = (char)(word.charAt(x) + shift);
+              
+              if (c > 'z')
+                s += (char)(word.charAt(x) - (26-shift));
+                else
+                    s += (char)(word.charAt(x) + shift);
+                }
+            return s;
+        
+
       }
-}
+    }
+
